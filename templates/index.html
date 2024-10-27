@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KEYS的小小检测站</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <div class="hitokoto-container">
+            <p id="hitokoto"></p>
+        </div>
+        <div class="menu">
+            <button onclick="showChart('realtime')">实时数据</button>
+            <button onclick="showChart('hourly')">每小时平均数据</button>
+            <button onclick="showChart('daily')">每日平均数据</button>
+        </div>
+
+        <div id="realtimeChartContainer" class="chart-container">
+            <h2>实时数据</h2>
+            <canvas id="realtimeChart"></canvas>
+        </div>
+
+        <div id="hourlyChartContainer" class="chart-container">
+            <h2>每小时平均数据</h2>
+            <canvas id="hourlyChart"></canvas>
+        </div>
+
+        <div id="dailyChartContainer" class="chart-container">
+            <h2>每日平均数据</h2>
+            <canvas id="dailyChart"></canvas>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/scripts.js') }}"></script>
+</body>
+</html>
