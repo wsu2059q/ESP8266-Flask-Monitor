@@ -1,4 +1,3 @@
-// 定义一个包含多个句子的数组
 const hitokotoArray = [
     "挺起胸膛，正视天空，不这样怎么算是活着？",
     "人的梦想是不会终结的！",
@@ -6,8 +5,6 @@ const hitokotoArray = [
     "能相互支撑的不仅仅是同伴，向敌人学习更多，从敌人哪里获得更多，直到再次重逢那日为止，仅是那个人的存在，就足以使自己忍受孤独，竞技者之间，是连敌人也能互相支撑的。",
     "我迷路了，不是因为没有地图，我没有的，是目的地。"
 ];
-
-// 获取一个随机的句子
 function getRandomHitokoto() {
     const randomIndex = Math.floor(Math.random() * hitokotoArray.length);
     return hitokotoArray[randomIndex];
@@ -41,7 +38,7 @@ async function renderCharts() {
     const fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000);
     const realtimeData = data.realtime.filter(item => new Date(item.timestamp) >= fiveMinutesAgo);
 
-    // 只显示最近的30项实时数据
+    // 显示最近的30项实时数据
     const realtimeLabels = realtimeData.slice(-30).map(item => formatDate(item.timestamp, 'hour'));
     const realtimeHumidityData = realtimeData.slice(-30).map(item => item.humidity);
     const realtimeTemperatureData = realtimeData.slice(-30).map(item => item.temperature);
