@@ -13,16 +13,10 @@ db_config = {
 }
 
 def get_db_connection():
-    """
-    获取数据库连接
-    """
     return mysql.connector.connect(**db_config)
 
 @app.route('/environment/info/add', methods=['POST'])
 def add_environment_info():
-    """
-    接收来自 ESP8266 的环境数据，并将其存储到数据库中。
-    """
     data = request.json  # 获取请求中的 JSON 数据
     environment_no = data.get('environmentNo', 'Unknown')  # 获取环境编号，默认为 'Unknown'
     humidity = data.get('humidity', 0.0)  # 获取湿度，默认为 0.0
@@ -42,9 +36,6 @@ def add_environment_info():
 
 @app.route('/environment/info/get', methods=['GET'])
 def get_environment_info():
-    """
-    获取最新的环境数据，最多返回 100 条记录。
-    """
     try:
         connection = get_db_connection()  # 获取数据库连接
         cursor = connection.cursor(dictionary=True)  # 创建字典类型的游标
@@ -59,9 +50,6 @@ def get_environment_info():
 
 @app.route('/environment/info/average', methods=['GET'])
 def get_average_environment_info():
-    """
-    获取环境数据的平均值，包括每小时的平均值、每天的平均值和最近 6 小时的实时数据。
-    """
     try:
         connection = get_db_connection()  # 获取数据库连接
         cursor = connection.cursor(dictionary=True)  # 创建字典类型的游标
@@ -110,10 +98,7 @@ def get_average_environment_info():
 
 @app.route('/')
 def index():
-    """
-    渲染主页模板
-    """
     return render_template('index.html')
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5888)  # 运行 Flask 应用
+    app.run(host='0.0.0.0', port=5888)
